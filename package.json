@@ -1,0 +1,30 @@
+{
+  "name": "camera-guide",
+  "version": "0.0.1",
+  "description": "Takes pictures with another image as guide to center the face",
+  "cordova": {
+    "id": "dopamina-plugin-camera-guide",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neuberoliveira/dopamina-plugin-camera-guide.git"
+  },
+  "keywords": [
+    "dopamina",
+    "cordova",
+    "camera",
+    "guide",
+    "face",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "Neuber Oliveira",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/neuberoliveira/dopamina-plugin-camera-guide/issues"
+  },
+  "homepage": "https://github.com/neuberoliveira/dopamina-plugin-camera-guide#readme"
+}
