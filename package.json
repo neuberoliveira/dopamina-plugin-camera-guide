@@ -1,5 +1,5 @@
 {
-  "name": "camera-guide",
+  "name": "dopamina-plugin-camera-guide",
   "version": "0.0.1",
   "description": "Takes pictures with another image as guide to center the face",
   "cordova": {
