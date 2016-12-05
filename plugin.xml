@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="dopamina-plugin-camera-guide" version="0.1">
+	<name>Camera Guide</name>
+	<description>Takes pictures with another image as guide to center the face</description>
+	<license>Apache 2.0</license>
+	<keywords>cordova,camera,guide,face</keywords>
+	<author>Neuber Oliveira</author>
+	<repo>https://repo.git</repo>
+	
+	<js-module src="www/cameraGuide.js" name="CameraGuide">
+		<clobbers target="cameraGuide" />
+	</js-module>
+	
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="CameraGuide">
+				<param name="ios-package" value="DPSCameraGuide" />
+			</feature>
+		</config-file>
+		<!-- main -->
+		<header-file src="src/ios/DPSCameraGuide.h" />
+		<source-file src="src/ios/DPSCameraGuide.m" />
+		
+		<!-- camera overlay -->
+		<source-file src="src/ios/overlay/DPSCameraGuideOverlayViewController.xib" />
+		<header-file src="src/ios/overlay/DPSCameraGuideOverlayViewController.h" />
+		<source-file src="src/ios/overlay/DPSCameraGuideOverlayViewController.m" />
+		
+		<!-- confirmation -->
+		<source-file src="src/ios/confirmation/DPSConfirmationViewController.xib" />
+		<header-file src="src/ios/confirmation/DPSConfirmationViewController.h" />
+		<source-file src="src/ios/confirmation/DPSConfirmationViewController.m" />
+		
+		<!-- images -->
+		<source-file src="src/ios/images/dps_accept.png" />
+		<source-file src="src/ios/images/dps_close.png" />
+		<source-file src="src/ios/images/dps_len_shot.png" />
+		
+		<preference name="CAMERA_USAGE_DESCRIPTION" default=" " />
+		<config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+			<string>$CAMERA_USAGE_DESCRIPTION</string>
+		</config-file>
+	</platform>
+</plugin>
