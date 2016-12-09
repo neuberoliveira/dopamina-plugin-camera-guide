@@ -16,17 +16,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+	self.controlsActive = NO;
+	[self toggleLoaderScreen:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
 	
+	// Do any additional setup after loading the view from its nib.
 	if( DPSCameraGuide.instance.optionUrl ){
-		NSURL *url = [NSURL URLWithString:DPSCameraGuide.instance.optionUrl];
-		NSData *data = [NSData dataWithContentsOfURL:url];
-		UIImage *image = [UIImage imageWithData:data];
-		self.compareImage.image = image;
-		self.compareImage.alpha = self.opacitySlider.value;
+		dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+		dispatch_async(q, ^{
+			/* Fetch the image from the server... */
+			NSURL *url = [NSURL URLWithString:DPSCameraGuide.instance.optionUrl];
+			NSData *data = [NSData dataWithContentsOfURL:url];
+			UIImage *image = [UIImage imageWithData:data];
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				/* This is the main thread again, where we set the tableView's image to
+				 be what we just fetched. */
+				self.compareImage.image = image;
+				self.compareImage.alpha = self.opacitySlider.value;
+				
+				[self toggleLoaderScreen:NO];
+			});
+		});
 	}else{
-		[self.controlsSwitch setOn:NO];
-		[self toggleControls:self.controlsSwitch];
+		[self toggleLoaderScreen:NO];
+		[self toggleMainControls:YES];
+		[self toggleControlsVisibility:NO];
 		self.controlsSwitch.hidden = YES;
 	}
 }
@@ -85,10 +103,8 @@
 }
 
 -(IBAction)toggleControls:(UISwitch*)sender {
-	self.controlsActive = !sender.isOn;
-	
-	self.opacitySlider.hidden = self.controlsActive;
-	self.compareImage.hidden = self.controlsActive;
+	self.controlsActive = sender.isOn;
+	[self toggleControlsVisibility:self.controlsActive];
 }
 
 -(IBAction)sliderUpdate:(UISlider*)slider {
@@ -98,5 +114,41 @@
 -(IBAction)closeCamera:(UIButton*)sender {
 	[DPSCameraGuide.instance backToWebView];
 	[DPSCameraGuide.instance fireError:@"user canceled image"];
+}
+
+
+#pragma mark
+-(void)toggleControlsVisibility:(bool)visible {
+	self.opacitySlider.hidden = !visible;
+	self.compareImage.hidden = !visible;
+}
+
+-(void)toggleMainControls:(bool)visible {
+	self.btTakePicture.hidden = !visible;
+	self.btCloseCamera.hidden = !visible;
+	self.controlsSwitch.hidden = !visible;
+}
+
+-(void)toggleLoaderScreen:(bool)visible {
+	self.controlsActive = !visible;
+	
+	[self toggleMainControls:!visible];
+	[self toggleControlsVisibility:!visible];
+	
+	if(visible)
+		[self displayLoader];
+	else
+		[self hideLoader];
+}
+
+-(void)displayLoader {
+	self.loader.hidden = NO;
+	[self.loader startAnimating];
+}
+
+
+-(void)hideLoader {
+	self.loader.hidden = YES;
+	[self.loader stopAnimating];
 }
 @end

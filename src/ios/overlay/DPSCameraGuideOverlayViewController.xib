@@ -8,8 +8,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DPSCameraGuideOverlayViewController">
             <connections>
+                <outlet property="btCloseCamera" destination="jAh-cM-SOu" id="XZM-jz-YOt"/>
+                <outlet property="btTakePicture" destination="PZX-qB-cgh" id="a22-yw-rG9"/>
                 <outlet property="compareImage" destination="Kzj-OA-f2z" id="Vgh-Wn-GqE"/>
                 <outlet property="controlsSwitch" destination="eQN-XG-wSJ" id="Ziw-Rj-cDB"/>
+                <outlet property="loader" destination="pXJ-rP-Ioq" id="Qu6-zK-TUk"/>
                 <outlet property="opacitySlider" destination="dGi-y2-2TQ" id="EvI-Bf-Fi9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -57,6 +60,7 @@
                                 <action selector="toggleControls:" destination="-1" eventType="valueChanged" id="4qK-SX-mBB"/>
                             </connections>
                         </switch>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="pXJ-rP-Ioq"/>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -70,9 +74,11 @@
                         <constraint firstItem="dGi-y2-2TQ" firstAttribute="leading" secondItem="Ewo-q7-sdX" secondAttribute="leading" constant="27" id="ei4-3h-kGx"/>
                         <constraint firstItem="Kzj-OA-f2z" firstAttribute="leading" secondItem="Ewo-q7-sdX" secondAttribute="leading" id="gDX-mh-xx9"/>
                         <constraint firstItem="Kzj-OA-f2z" firstAttribute="top" secondItem="Ewo-q7-sdX" secondAttribute="top" id="ilk-8C-knV"/>
+                        <constraint firstItem="pXJ-rP-Ioq" firstAttribute="centerY" secondItem="Kzj-OA-f2z" secondAttribute="centerY" id="jpc-aP-1Yw"/>
                         <constraint firstAttribute="trailing" secondItem="eQN-XG-wSJ" secondAttribute="trailing" constant="27" id="k0x-XV-How"/>
                         <constraint firstItem="PZX-qB-cgh" firstAttribute="top" secondItem="dGi-y2-2TQ" secondAttribute="bottom" constant="8" id="sAI-7g-RdJ"/>
                         <constraint firstAttribute="trailing" secondItem="Kzj-OA-f2z" secondAttribute="trailing" id="xXm-Mg-xon"/>
+                        <constraint firstItem="pXJ-rP-Ioq" firstAttribute="centerX" secondItem="Kzj-OA-f2z" secondAttribute="centerX" id="z1a-eB-O5Q"/>
                     </constraints>
                 </view>
             </subviews>
