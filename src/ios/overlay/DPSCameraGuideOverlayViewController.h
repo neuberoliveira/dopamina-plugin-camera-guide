@@ -17,6 +17,7 @@
 @property(nonatomic, strong) IBOutlet UISlider *opacitySlider;
 @property(nonatomic, strong) IBOutlet UIImageView *compareImage;
 @property(nonatomic, strong) IBOutlet UISwitch *controlsSwitch;
+@property(nonatomic, strong) IBOutlet UIView *loaderContainer;
 @property(nonatomic, strong) IBOutlet UIActivityIndicatorView *loader;
 @property(nonatomic, strong) IBOutlet UIButton *btTakePicture;
 @property(nonatomic, strong) IBOutlet UIButton *btCloseCamera;

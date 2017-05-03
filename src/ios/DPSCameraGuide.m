@@ -49,14 +49,8 @@ static DPSCameraGuide *instance;
 		self.picker.toolbarHidden = YES;
 		self.picker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
 		
-		/*CGSize screenBounds = [UIScreen mainScreen].bounds.size;
-		CGFloat cameraAspectRatio = 4.0f/3.0f;
-		CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
-		CGFloat scale = screenBounds.height / camViewHeight;
+		self.picker.cameraViewTransform = CGAffineTransformScale(self.picker.cameraViewTransform, 1.0, 1.0);
 		
-		self.picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
-		self.picker.cameraViewTransform = CGAffineTransformScale(self.picker.cameraViewTransform, scale, scale);*/
-		self.picker.cameraViewTransform = CGAffineTransformScale(self.picker.cameraViewTransform, 1.8, 1.8);
 		// Insert the overlay
 		self.overlay = [[DPSCameraGuideOverlayViewController alloc] initWithNibName:@"DPSCameraGuideOverlayViewController" bundle:nil];
 		self.overlay.pickerReference = self.picker;

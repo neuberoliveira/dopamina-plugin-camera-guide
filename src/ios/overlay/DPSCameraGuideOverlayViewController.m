@@ -142,13 +142,13 @@
 }
 
 -(void)displayLoader {
-	self.loader.hidden = NO;
+	self.loaderContainer.hidden = NO;
 	[self.loader startAnimating];
 }
 
 
 -(void)hideLoader {
-	self.loader.hidden = YES;
+	self.loaderContainer.hidden = YES;
 	[self.loader stopAnimating];
 }
 @end
